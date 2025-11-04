@@ -1,0 +1,125 @@
+#include<iostream>
+using namespace std;
+
+
+void MasivB(int A[], int N1) {
+    cout << "Vuvedete elementite na masiva: " << endl;
+    for (int i = 0; i < N1; i++) {
+        cin >> A[i];
+    }
+}
+
+int SumOtrChisla(int A[], int N1) {
+    int Sum1 = 0;
+    for (int i = 0; i < N1; i++) {
+        if (A[i] < 0) Sum1 += A[i];
+    }
+    return Sum1;
+}
+
+int SrednoAritmetichnoNapolojitelniChisla(int A[], int N1) {
+    int SrArPolChis = 0;
+	int count = 0;
+	int MinChislo = 0;
+	int MaxChislo = 0;
+     	cout << endl
+		     <<"Vavedete Min i Max na polojitelnite chisla, za da se izvarshi sredno aritmetichno: ";
+     	cin>>MinChislo >> MaxChislo;
+	 
+	for (int i = 0; i < N1; i++) {
+        if (A[i] > 0 && A[i] >= MinChislo && A[i] <= MaxChislo) {
+            SrArPolChis += A[i];
+            count++;
+        }
+    }
+    if (count == 0) return 0;
+    return SrArPolChis / count;
+}
+
+int BroiNuli(int A[], int N1) {
+    int BrNull = 0;
+    for (int i = 0; i < N1; i++) {
+        if (A[i] == 0) BrNull++;
+    }
+    return BrNull;
+}
+
+void NaiGolqmoPolojitelnoChislo(int A[], int N1) {
+   int Max2=0;
+   int index=0;
+	for (int i = 0; i < N1; i++) {
+        if (A[i] > 0 && A[i] > Max2) {
+            Max2 = A[i];
+            index = i;
+        }
+    }
+    if (index <= 0)
+        cout << endl
+		     << "Nqma polojitelni chisla v masiva." << endl<<endl;
+    else
+        cout << endl
+		     << "Nai-golqmoto polojitelno chislo e " << Max2
+             << " i e na poziciq " << index + 1 << endl<<endl;
+}
+
+int main() {
+    cout << "Vavedi 25 ili po malko chisla v masiva B: ";
+    int N;
+    cin >> N;
+
+    if (N <= 0 || N > 25) {
+        cout << "Vavel si gresgen broi chisla" << endl;
+        return 0;
+    }
+     else{
+     	cout << "Vavel si pravilen broi chisla" << endl<<endl;
+	 }
+    int B[N];
+    MasivB(B, N);
+
+    int c;
+    do {
+        cout <<endl
+		     << "Izberete ot 0 do 4:\n"
+             << "0 --> Izhod\n"
+             << "1 --> Sumata na otricatelnite chisla\n"
+             << "2 --> Sredno-aritmetichnoto na polojitelni chisla s min i max\n"
+             << "3 --> Broqt na nulite v masiva\n"
+             << "4 --> Nai-golqmoto polojitelno chislo i nomerut mu\n"
+             << endl
+			 << "Vashiqt izbor e: ";
+        cin >> c;
+
+        switch (c) {
+        case 0:
+            cout << "Krai." << endl;
+            break;
+
+        case 1:
+            cout << endl
+			     << "Sumata na otricatelnite chisla e: " << SumOtrChisla(B, N) << endl<<endl;
+            break;
+
+        case 2:
+            cout << endl
+			     << "Sredno-aritmetichnoto na polojitelnite chisla e: "
+                 << SrednoAritmetichnoNapolojitelniChisla(B, N) << endl<<endl;
+            break;
+
+        case 3:
+            cout << endl
+			     << "Broqt na nulite v masiva e: " << BroiNuli(B, N) << endl<<endl;
+            break;
+
+        case 4:
+            NaiGolqmoPolojitelnoChislo(B, N);
+            break;
+
+        default:
+            cout << "Nqma takava funkciq!" << endl<<endl;
+        }
+
+    } while (c != 0);
+
+    return 0;
+}
